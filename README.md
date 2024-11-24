@@ -2,59 +2,63 @@
 
 ## Descrição Geral
 
-Este projeto documenta a implementação de uma infraestrutura de redes e telefonia utilizando equipamentos Cisco em um grande evento de Aviação. A infraestrutura local era composta apenas por Switches Dell e Huawei, fomos chamados para implementar telefonia voip e hotlines de forma que se comunicassem com outra parte do evento que estaria ocorrendo ao mesmo tempo em outra cidade, além da telefonia também videoconferência e redundância de links para que os serviços sempre estivessem disponíveis. Apresentaremos a topologia física e lógica implementada, as configurações dos ativos de rede, além dos problemas encontrados durante a implementação e suas soluções. 
+Este repositório documenta a implementação de uma infraestrutura de redes e telefonia utilizando equipamentos Cisco em um grande evento de aviação. O projeto visou integrar a comunicação de VoIP e hotlines entre diferentes locais do evento, realizados simultaneamente em cidades distintas. Além disso, foram implementadas soluções para videoconferência ponto a ponto e redundância de links, garantindo alta disponibilidade dos serviços.
 
-O objetivo deste repositório é servir como uma referência prática para profissionais de redes e entusiastas interessados em projetos similares.
+Apresentamos aqui a topologia física e lógica projetada, as configurações dos ativos de rede, os desafios enfrentados durante a implementação e as soluções aplicadas. Este material serve como uma referência prática para profissionais de redes e entusiastas interessados em projetos similares.
 
 ## Cenário e Contextualização
 
-O projeto foi realizado para uma organização de Aviação. O objetivo era implementar uma solução integrada de rede e telefonia para atender às seguintes necessidades:
+O evento foi realizado em um aeródromo com infraestrutura composta por:
 
-- Comunicação interna eficiente por meio de VoIP entre as salas do evento e as salas do evento na outra cidade.
-- Garantia de alta disponibilidade e desempenho para tráfego de dados e voz, por meio de implementação de links redundantes.
+*Equipamentos existentes:* Firewall Palo Alto, switches Dell e Huawei.
+*Rede operacional:* Redes intranet e internet do aeródromo.
 
-O ambiente inicial consistia apenas na infraestrutura de rede do Aerodromo com sua rede intranet, internet, seus equipamentos são Firewall PaloAlto, Switches Dell e Huawei e uma Rede Operacional do Aeroporto.
+A organização exigiu:
+
+- Comunicação eficiente via VoIP entre as salas do evento e outro local simultâneo em outra cidade.
+- 3 Videoconferências ponto a ponto com outra cidade em alta disponibilidade.
+- Garantia de alta disponibilidade de dados e voz por meio de links redundantes.
+
+Por questões de sigilo, a topologia inicial foi ajustada para incluir apenas os elementos diretamente relacionados ao escopo deste projeto.
 
 ![Topologia Física da Rede Inicial](diagrams/topologia_inicial.jpg)
-
-Foi representado apenas a infraestrutura que envolvesse o projeto, por questão de sigilo foram retiradas informações que não estão no escopo deste projeto.
 
 ## Serviços Prestados
 
 Os principais serviços realizados durante o projeto incluem:
 
 1. **Planejamento e Design da Rede:**
-   - Definição da topologia física e lógica.
-   - Seleção de equipamentos e recursos necessários.
+   - Criação da topologia física e lógica.
+   - Seleção de equipamentos e dimensionamento dos recursos necessários.
 
 2. **Implementação da Infraestrutura de Rede:**
    - Configuração de switches e roteadores Cisco.
-   - Criação de VLANs para segmentação de tráfego.
+   - Segmentação de tráfego com VLANs.
 
-3. **Assessoria à equipe de Segurança da Informação**
-   - Definição das regras de Firewall para os serviços implementados.
+3. **Assessoria à equipe de Segurança da Informação:**
+   - Definição e aplicação de regras de firewall para os serviços implementados.
 
-4. **Implementação do Sistema de Telefonia:**
-   - Configuração de VoIP com Call Manager.
-   - Integração com a rede local e remota.
+4. **Sistema de Telefonia:**
+   - Configuração de VoIP utilizando Call Manager.
+   - Integração entre as redes locais e remotas.
 
-5. **Implementação dos Links Redundantes**
-   - Ativação da Bridge para link redundante.
-   - Script para Automação do Plano de Continuidade de Negócios.
+5. **Redundância de Links:**
+   - Configuração de uma bridge para links redundantes.
+   - Automação do plano de continuidade com script específico.
 
 6. **Testes e Otimizações:**
-   - Testes de conectividade e qualidade de chamadas.
-   - Ajustes de infraestrutura de acordo com novas demandas.
+   - Verificação de conectividade, qualidade de chamadas e estabilidade de links.
+   - Ajustes conforme novas demandas surgiram durante o evento.
 
 ## Topologia Física e Lógica
 
-A topologia implementada é apresentada abaixo:
+As topologias desenvolvidas estão detalhadas abaixo:
 
 ### Topologia Física
 
 ![Topologia Física da Rede Inicial](diagrams/topologia_projetada.jpg)
 
-Foi representado nesta topologia apenas a infraestrutura que está dentro do escopo deste projeto.
+Esta topologia abrange exclusivamente os componentes e redes que fazem parte do escopo do projeto.
 
 ### Topologia Lógica
 
@@ -64,7 +68,7 @@ Foi representado nesta topologia apenas a infraestrutura que está dentro do esc
 
 ## Configurações dos Ativos
 
-    Será acrescentado as partes relevantes das configurações implementadas nos ativos.
+    As configurações mais relevantes dos equipamentos utilizados são apresentadas a seguir:
 
 ### Roteador CME
 ```plaintext
@@ -81,7 +85,7 @@ Foi representado nesta topologia apenas a infraestrutura que está dentro do esc
 ---
 
 ### Switches
-
+```plaintext
 # Configuração de VLANs
 
 
@@ -93,7 +97,7 @@ Foi representado nesta topologia apenas a infraestrutura que está dentro do esc
 
 # Configuração de Etherchannel
 
-
+```
 ---
 
 ### 7. Problemas Encontrados e Soluções
