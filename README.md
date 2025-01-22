@@ -68,7 +68,7 @@ Esta topologia abrange exclusivamente os componentes e redes que fazem parte do 
 
 ## Configurações dos Ativos
 
-    As configurações mais relevantes dos equipamentos utilizados são apresentadas a seguir:
+As configurações mais relevantes dos equipamentos utilizados são apresentadas a seguir:
 
 ### Roteador CME
 
@@ -110,6 +110,9 @@ ip forward-protocol nd
 ```
 
 #### Configuração de Telefonia Voip
+
+Lembro que as configurações de dial-peer e ephone-dn devem ter outro CME que tenha match no plano de numeração para que se feche as sessões SIP.
+
 ```plaintext
 !
 voice service voip
@@ -193,78 +196,7 @@ ephone-dn  1
  name DIRECTOR
  intercom 3003213 no-auto-answer
 !
-ephone-dn  2
- number 2081002
- label RTF3 3913-8362
- description DIRECTOR
- name DIRECTOR
- intercom 3003236 no-auto-answer
-!
-ephone-dn  3
- number 2081003
- label RTF3 3913-8364
- description SALA DE PLANEJAMENTO
- name SALA DE PLANEJAMENTO
- intercom 3003238 no-auto-answer
-!
-ephone-dn  4
- number 2081004
- label RTF1 COP
- description CONTROL
- name CONTROL
- intercom 3003214 no-auto-answer
-!
-ephone-dn  5
- number 2081005
- label RTF3 3913-8363
- description SALA DE CRISE
- name SALA DE CRISE
- intercom 3003237 no-auto-answer
-!
-ephone-dn  6
- number 2081006 secondary 8106
- label RT 9806
- description SALA DE CRISE
- name SALA DE CRISE
-!
-ephone-dn  7
- number 2081007 secondary 8107
- label RT 9807
- description AUDITORIO
- name MASS AUDITORIO
-!
-ephone-dn  8
- number 2081008
- label RTF1 COP
- description SALA DE CRISE
- name SALA DE CRISE
- intercom 3003215 no-auto-answer
-!
-ephone-dn  9
- number 2081009
- label RTF3 3913-8365
- description SALA DE PLANEJAMENTO
- name SALA DE PLANEJAMENTO
- intercom 3003239 no-auto-answer
-!
-ephone-dn  10
- number 2081010 secondary 9810
- label RT 9810
- description SALA DE PLANEJAMENTO
- name SALA DE PLANEJAMENTO
-!
-ephone-dn  11
- number 2081011
- label RTF3 3913-8366
- description CONTROLE DAS OPERACOES
- name CONTROLE DAS OPERACOES
- intercom 3003235 no-auto-answer
-!
-ephone-dn  12
- number 2081012
- label RT 9812
- description CONTROLE DAS OPERACOES
- name CONTROLE DAS OPERACOES
+...
 !         
 ephone-dn  13
  number 2081013 secondary 9813
@@ -283,123 +215,7 @@ ephone  1
  auto-line 1 answer-incoming
  button  1:1 2:2
 !
-ephone  2
- device-security-mode none
- description SALA DE PLANEJAMENTO
- mac-address 0024.C4BE.CCCC
- ephone-template 1
- max-calls-per-button 2
- codec g729r8
- type 7931
- auto-line 1 answer-incoming
- button  1:3
-!
-ephone  3
- device-security-mode none
- description SALA DE CRISE
- mac-address 64AE.0CF7.DDDD
- ephone-template 1
- max-calls-per-button 2
- codec g729r8
- type 7931
- auto-line 1 answer-incoming
- button  1:8 2:5 3:6
-!
-ephone  4
- device-security-mode none
- description AUDITORIO
- mac-address 7010.5C5E.EEEE
- ephone-template 1
- max-calls-per-button 2
- codec g729r8
- type 7931
- auto-line 1 answer-incoming
- button  1:7
-!
-ephone  5
- device-security-mode none
- description CONTROLE DAS OPERACOES
- mac-address ACA0.166E.FFFF
- ephone-template 1
- max-calls-per-button 2
- codec g729r8
- type 7931
- auto-line 1 answer-incoming
- button  1:4 2:9 3:10
-!
-ephone  6
- device-security-mode none
- description SALA DE PLANEJAMENTO
- mac-address F025.7278.AAAA
- ephone-template 1
- max-calls-per-button 2
- codec g729r8
- type 7931
- auto-line 1 answer-incoming
- button  1:11 2:12
-!
-ephone  7
- device-security-mode none
- mac-address 0C85.253E.ABBB
- ephone-template 1
- max-calls-per-button 2
- codec g729r8
- type 7931
- auto-line 1 answer-incoming
- button  1:13
-!
-ephone  8
- device-security-mode none
- description EPHONE 8
- mac-address 2C36.F859.CCCC
- ephone-template 1
- max-calls-per-button 2
- codec g729r8
- type 7931
- auto-line 1 answer-incoming
- button  1:20
-!
-ephone  9
- device-security-mode none
- description EPHONE 9
- mac-address 5897.1E29.DDDD
- max-calls-per-button 2
- type 7931
- auto-line 1 answer-incoming
- button  1:20
-!         
-ephone  10
- device-security-mode none
- description EPHONE 10
- mac-address 2C36.F859.EEEE
- ephone-template 1
- max-calls-per-button 2
- codec g729r8
- type 7931
- auto-line 1 answer-incoming
- button  1:20
-!
-ephone  11
- device-security-mode none
- description EPHONE 11
- mac-address 2C36.F859.FFFF
- ephone-template 1
- max-calls-per-button 2
- codec g729r8
- type 7931
- auto-line 1 answer-incoming
- button  1:20
-!
-ephone  12
- device-security-mode none
- description EPHONE 12
- mac-address 2C36.F859.AAAA
- ephone-template 1
- max-calls-per-button 2
- codec g729r8
- type 7931
- auto-line 1 answer-incoming
- button  1:20
+...
 !
 ephone  13
  device-security-mode none
@@ -448,18 +264,124 @@ pseudowire-class 1CC1
 ---
 
 ### Switches
+Foi incluido no readme apenas as configurações do switch SWOP_108 que é o principal. Os outros são apenas distribuição normal de portas em vlans específicas para o funcionamento da Rede.
+
+#### Configuração Básica
 ```plaintext
-# Configuração de VLANs
+hostname SWOPE_108
+!
+no ip domain-lookup
+vtp domain cortex
+vtp mode transparent
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan500
+ ip address 192.168.58.108 255.255.255.128
+!
+ip default-gateway 192.168.58.1
+!
+no ip http server
+no ip http secure-server
+!
+```
+#### Configuração de VLANs
+```plaintext
+!
+vlan 225
+ name SISVISUALIZACAO
+!
+vlan 230
+ name ENLACE
+!
+vlan 250
+ name REDEOPERACIONAL
+!
+vlan 500
+ name INTRANET
+!
+vlan 666
+ name LIMBO
+!
+```
+#### Configuração de portas
+```plaintext
+!
+interface GigabitEthernet1/0/3
+ switchport access vlan 500
+ switchport mode access
+!
+...
+interface GigabitEthernet1/0/13
+ switchport access vlan 500
+ switchport mode access
+!
+interface GigabitEthernet1/0/14
+ switchport access vlan 230
+ switchport mode access
+!
+interface GigabitEthernet1/0/15
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+...
+!
+interface GigabitEthernet1/0/46
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface GigabitEthernet1/0/47
+ switchport access vlan 500
+ switchport mode access
+!
+interface GigabitEthernet1/0/48
+ description TRUNK>>SW_HUAWEI
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/49
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+```
 
+#### Configuração de STP
+```plaintext
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+```
 
-# Configuração de portas
-
-
-# Configuração de STP
-
-
-# Configuração de Etherchannel
-
+#### Configuração de Etherchannel
+```plaintext
+!
+interface Port-channel1
+ description Etherchannel ENLACE
+ switchport access vlan 230
+ switchport mode access
+ spanning-tree bpdufilter enable
+!
+interface GigabitEthernet1/0/1
+ description EtherCH
+ switchport access vlan 230
+ switchport mode access
+ speed 100
+ channel-protocol pagp
+ channel-group 1 mode desirable
+!
+interface GigabitEthernet1/0/2
+ description EtherCH
+ switchport access vlan 230
+ switchport mode access
+ speed 100
+ channel-protocol pagp
+ channel-group 1 mode desirable
+ !
 ```
 ---
 
@@ -475,3 +397,6 @@ Será Listado os problemas encontrados durante o projeto e explique como foram r
 
 2. **Problema: Loop na rede devido a má configuração de STP.**
    - **Solução:** Configuração e verificação do protocolo Spanning Tree.
+      ```plaintext
+      spanning-tree mode mst
+      ```
