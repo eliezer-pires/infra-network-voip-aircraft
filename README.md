@@ -72,7 +72,7 @@ Esta topologia abrange exclusivamente os componentes e redes que fazem parte do 
 
 ### Roteador CME
 
-# Configuração básica
+#### Configuração básica
 ```plaintext
 !
 hostname RTOP_CME
@@ -100,7 +100,7 @@ no ip http secure-server
 !         
 ```
 
-# Configuração de Roteamento
+#### Configuração de Roteamento
 ```plaintext
 ip route 192.168.0.0 255.255.0.0 192.168.58.1
 !
@@ -109,7 +109,7 @@ ip forward-protocol nd
 !
 ```
 
-# Configuração de Telefonia Voip
+#### Configuração de Telefonia Voip
 ```plaintext
 !
 voice service voip
@@ -416,7 +416,7 @@ ephone  13
  button  13:13
 !
 ```
-# Configuração de Túnel
+#### Configuração de Túnel
 ```plaintext
 !
 interface Serial0/1/1
